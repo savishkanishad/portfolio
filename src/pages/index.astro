@@ -1,11 +1,153 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import '../styles/global.css';
 import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import Skills from '../components/Skills.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import About from '../components/About.astro';
+import { getCollection } from 'astro:content';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const allProjects = await getCollection('projects');
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Savishka Nishad | Secure & AI-Driven Software Solutions">
+  <Navbar />
+  <main class="max-w-7xl mx-auto px-6 md:px-24">
+    <Hero />
+    
+    <div class="reveal">
+      <Skills />
+    </div>
+
+    <section id="projects" class="py-24 border-t border-white/5 reveal">
+      <div class="flex items-center gap-4 mb-16">
+        <h2 class="text-4xl font-bold text-white">Selected <span class="text-gradient">Projects</span></h2>
+        <div class="h-[1px] bg-gradient-to-r from-blue-500/50 to-transparent flex-grow"></div>
+      </div>
+      
+      <div class="grid gap-10 md:grid-cols-2">
+        {allProjects.map((project, index) => (
+          <div class="animate-fade-up" style={`animation-delay: ${index * 150}ms`}>
+            <ProjectCard 
+              title={project.data.title}
+              description={project.data.description}
+              tags={project.data.tags}
+              url={`/projects/${project.id}`}
+              image={project.data.image}
+            />
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div id="about" class="reveal">
+      <About />
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 border-t border-white/5 reveal">
+      <div class="glass p-12 md:p-16 rounded-[3rem] relative overflow-hidden group max-w-4xl mx-auto">
+        <div class="absolute inset-0 bg-blue-600/5 group-hover:bg-blue-600/10 transition-all -z-10"></div>
+        
+        <div class="text-center mb-12">
+          <h2 class="text-4xl md:text-5xl font-black text-white mb-6">Let's build something <span class="text-gradient">extraordinary.</span></h2>
+          <p class="text-slate-400 text-lg max-w-2xl mx-auto">Currently looking for new opportunities and collaborations in AI and Backend development.</p>
+        </div>
+
+        <form 
+          action="https://formspree.io/f/mykndaov" 
+          method="POST"
+          id="contact-form"
+          class="grid gap-6 text-left"
+        >
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label for="name" class="text-sm font-bold text-slate-400 ml-2">Your Name</label>
+              <input 
+                type="text" 
+                name="name" 
+                id="name" 
+                required 
+                placeholder="John Doe"
+                class="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white focus:outline-none focus:border-blue-500/50 transition-all placeholder:text-slate-600"
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="email" class="text-sm font-bold text-slate-400 ml-2">Email Address</label>
+              <input 
+                type="email" 
+                name="email" 
+                id="email" 
+                required 
+                placeholder="john@example.com"
+                class="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white focus:outline-none focus:border-blue-500/50 transition-all placeholder:text-slate-600"
+              />
+            </div>
+          </div>
+          
+          <div class="space-y-2">
+            <label for="message" class="text-sm font-bold text-slate-400 ml-2">Message</label>
+            <textarea 
+              name="message" 
+              id="message" 
+              rows="5" 
+              required 
+              placeholder="Tell me about your project..."
+              class="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white focus:outline-none focus:border-blue-500/50 transition-all placeholder:text-slate-600 resize-none"
+            ></textarea>
+          </div>
+
+          <button 
+            type="submit" 
+            id="submit-btn"
+            class="w-full md:w-max px-12 py-5 bg-blue-600 text-white font-black rounded-2xl hover:bg-blue-700 hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] transition-all transform hover:-translate-y-1 flex items-center justify-center gap-3 group/btn"
+          >
+            <span>Send Message</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 group-hover/btn:translate-x-1 transition-transform">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+            </svg>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <script is:inline>
+      const form = document.getElementById('contact-form');
+      const submitBtn = document.getElementById('submit-btn');
+      
+      form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>Sending...</span>';
+        
+        try {
+          const formData = new FormData(form);
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+          
+          if (response.ok) {
+            window.showToast("Message sent successfully! I'll get back to you soon.");
+            form.reset();
+          } else {
+            window.showToast("Oops! Something went wrong. Please try again or email me directly.", true);
+          }
+        } catch (error) {
+          window.showToast("Connection error. Please check your internet and try again.", true);
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnText;
+        }
+      });
+    </script>
+
+    <footer class="py-12 border-t border-white/5 text-center text-slate-500 text-sm">
+      <p>© {new Date().getFullYear()} Savishka Nishad. Built with Astro & Passion.</p>
+    </footer>
+  </main>
 </Layout>

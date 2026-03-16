@@ -1,0 +1,35 @@
+---
+import '../../styles/global.css';
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+// 1. Generate paths for all projects
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map(project => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+// 2. Render the Markdown content
+const { Content } = await render(project);
+---
+
+<Layout title={project.data.title}>
+  <main class="max-w-3xl mx-auto py-20 px-6 text-slate-300">
+    <a href="/" class="text-blue-500 hover:underline mb-8 block">← Back to Portfolio</a>
+    
+    <h1 class="text-5xl font-black text-white mb-4">{project.data.title}</h1>
+    <div class="flex gap-2 mb-10">
+      {project.data.tags.map(tag => (
+        <span class="px-3 py-1 bg-slate-800 rounded-full text-xs">{tag}</span>
+      ))}
+    </div>
+
+    <article class="prose prose-invert prose-blue max-w-none">
+      <Content />
+    </article>
+  </main>
+</Layout>

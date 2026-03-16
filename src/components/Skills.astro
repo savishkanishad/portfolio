@@ -1,0 +1,52 @@
+---
+const skillCategories = [
+  {
+    title: "Development",
+    color: "blue",
+    skills: ["Python", "Java", "PHP", "C#", "Astro"]
+  },
+  {
+    title: "Database & Backend",
+    color: "purple",
+    skills: ["MySQL", "SQLite", "SQL Server", "REST APIs"]
+  },
+  {
+    title: "Cybersecurity",
+    color: "cyan",
+    skills: ["Network Security", "Encryption", "Firewalls", "CIA Triad"]
+  }
+];
+---
+
+<section class="py-20 border-t border-white/5">
+  <div class="flex items-center gap-4 mb-12">
+    <h2 class="text-3xl font-bold text-white">Technical <span class="text-gradient">Arsenal</span></h2>
+    <div class="h-[1px] bg-gradient-to-r from-blue-500/50 to-transparent flex-grow"></div>
+  </div>
+
+  <div class="grid gap-8 md:grid-cols-3">
+    {skillCategories.map((category, index) => (
+      <div 
+        class={`p-8 rounded-2xl glass hover:border-blue-500/30 transition-all transform hover:-translate-y-2 group animate-fade-up`}
+        style={`animation-delay: ${index * 100}ms`}
+      >
+        <div class="flex items-center gap-3 mb-6">
+           <div class={`w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center border border-blue-500/20 group-hover:bg-blue-500/20 transition-colors`}>
+             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-blue-400">
+               <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
+             </svg>
+           </div>
+           <h3 class="text-white font-bold text-lg uppercase tracking-tight">{category.title}</h3>
+        </div>
+        
+        <div class="flex flex-wrap gap-2">
+          {category.skills.map(skill => (
+            <span class="px-3 py-1.5 bg-white/5 text-slate-300 rounded-lg text-sm border border-white/10 hover:border-blue-500/40 hover:text-white transition-all">
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
