@@ -27,11 +27,39 @@
       </a>
     </div>
 
-    <!-- Mobile Menu Button (Placeholder) -->
-    <button class="md:hidden text-white">
+    <button id="mobile-menu-button" type="button" class="md:hidden text-white" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open navigation menu">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
       </svg>
     </button>
   </div>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-[#0a0a0c]/95 px-6 py-5">
+    <div class="flex flex-col gap-4">
+      <a href="#projects" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Projects</a>
+      <a href="#about" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">About</a>
+      <a href="/cv.pdf" download class="text-sm font-medium text-slate-300 hover:text-white transition-colors">CV</a>
+      <a href="#contact" class="text-sm font-bold text-blue-400 hover:text-blue-300 transition-colors">Hire Me</a>
+    </div>
+  </div>
 </nav>
+
+<script is:inline>
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuButton?.addEventListener('click', () => {
+    const isOpen = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+    mobileMenuButton.setAttribute('aria-expanded', String(!isOpen));
+    mobileMenuButton.setAttribute('aria-label', isOpen ? 'Open navigation menu' : 'Close navigation menu');
+    mobileMenu?.classList.toggle('hidden', isOpen);
+  });
+
+  mobileMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenuButton?.setAttribute('aria-expanded', 'false');
+      mobileMenuButton?.setAttribute('aria-label', 'Open navigation menu');
+      mobileMenu.classList.add('hidden');
+    });
+  });
+</script>
