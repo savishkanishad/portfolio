@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-const { title, description, tags, url, image } = Astro.props;
+const { title, description, tags, url, liveDemo, image } = Astro.props;
 ---
 <div class="glass p-8 rounded-[2rem] group hover:border-blue-500/40 transition-all duration-500 transform hover:-translate-y-3 relative overflow-hidden flex flex-col h-full">
   <!-- 3D Glow Effect -->
@@ -32,10 +32,20 @@ const { title, description, tags, url, image } = Astro.props;
     </div>
   </div>
   
-  <a href={url} class="inline-flex items-center justify-between w-full px-6 py-4 bg-white/5 rounded-2xl text-blue-400 font-bold hover:bg-blue-600 hover:text-white transition-all group/link">
-    <span>Launch Detail</span>
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 transform group-hover/link:translate-x-1 transition-transform">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-    </svg>
-  </a>
+  <div class="grid gap-3 sm:grid-cols-2">
+    <a href={url} class="inline-flex items-center justify-between px-5 py-4 bg-white/5 rounded-2xl text-blue-400 font-bold hover:bg-blue-600 hover:text-white transition-all group/link">
+      <span>GitHub Repo</span>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 transform group-hover/link:translate-x-1 transition-transform">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+      </svg>
+    </a>
+    {liveDemo && (
+      <a href={liveDemo} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-between px-5 py-4 bg-blue-600 rounded-2xl text-white font-bold hover:bg-blue-700 hover:shadow-[0_0_20px_rgba(37,99,235,0.35)] transition-all group/demo">
+        <span>Live Demo</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 transform group-hover/demo:translate-x-1 transition-transform">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+        </svg>
+      </a>
+    )}
+  </div>
 </div>

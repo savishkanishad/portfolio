@@ -5,6 +5,7 @@ tags: ["PHP", "MySQL", "Python", "OpenCV", "JavaScript"]
 publishDate: "2026-03-15"
 image: "../../assets/neuroguard_mockup.png"
 github: "https://github.com/savishkanishad/NeuroGuard"
+liveDemo: "https://neuroguard.infinityfree.me/"
 ---
 
 ### Project Overview

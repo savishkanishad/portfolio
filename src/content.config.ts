@@ -12,6 +12,7 @@ const projects = defineCollection({
     publishDate: z.coerce.date(),
     image: image().optional(),
     github: z.string().url().optional(),
+    liveDemo: z.string().url().optional(),
   }),
 });
 

@@ -5,6 +5,7 @@ tags: ["PHP", "SQL", "HTML5", "CSS3", "JavaScript"]
 publishDate: "2026-03-16"
 image: "../../assets/powercore_fitness_mockup.png"
 github: "https://github.com/savishkanishad/PowerCore-Fitness"
+liveDemo: "https://powercorefitness.infinityfree.me/"
 ---
 
 ### Project Overview

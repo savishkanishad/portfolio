@@ -34,6 +34,7 @@ const allProjects = await getCollection('projects');
               description={project.data.description}
               tags={project.data.tags}
               url={project.data.github}
+              liveDemo={project.data.liveDemo}
               image={project.data.image}
             />
           </div>
