@@ -15,10 +15,15 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 // 2. Render the Markdown content
 const { Content } = await render(project);
+
+const githubUrl = project.data.github;
 ---
 
 <Layout title={project.data.title}>
   <main class="max-w-3xl mx-auto py-20 px-6 text-slate-300">
+    {githubUrl && (
+      <meta http-equiv="refresh" content={`0;url=${githubUrl}`} />
+    )}
     <a href="/" class="text-blue-500 hover:underline mb-8 block">← Back to Portfolio</a>
     
     <h1 class="text-5xl font-black text-white mb-4">{project.data.title}</h1>
