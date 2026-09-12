@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-const { title, description, tags, url, liveDemo, image } = Astro.props;
+const { title, description, tags, url, liveDemo, demoUsername, demoPassword, image } = Astro.props;
 ---
 <div class="glass p-8 rounded-[2rem] group hover:border-blue-500/40 transition-all duration-500 transform hover:-translate-y-3 relative overflow-hidden flex flex-col h-full">
   <!-- 3D Glow Effect -->
@@ -32,6 +32,16 @@ const { title, description, tags, url, liveDemo, image } = Astro.props;
     </div>
   </div>
   
+  {demoUsername && demoPassword && (
+    <div class="mb-4 rounded-2xl border border-blue-500/20 bg-blue-500/10 px-5 py-4 text-sm text-slate-300">
+      <p class="mb-2 font-bold text-blue-300">Live Demo Login</p>
+      <div class="grid gap-1 sm:grid-cols-2">
+        <span>Username: <strong class="text-white">{demoUsername}</strong></span>
+        <span>Password: <strong class="text-white">{demoPassword}</strong></span>
+      </div>
+    </div>
+  )}
+
   <div class="grid gap-3 sm:grid-cols-2">
     <a href={url} class="inline-flex items-center justify-between px-5 py-4 bg-white/5 rounded-2xl text-blue-400 font-bold hover:bg-blue-600 hover:text-white transition-all group/link">
       <span>GitHub Repo</span>

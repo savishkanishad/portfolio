@@ -6,6 +6,8 @@ publishDate: "2026-03-15"
 image: "../../assets/neuroguard_mockup.png"
 github: "https://github.com/savishkanishad/NeuroGuard"
 liveDemo: "https://neuroguard.infinityfree.me/"
+demoUsername: "admin"
+demoPassword: "admin123"
 ---
 
 ### Project Overview
