@@ -33,7 +33,7 @@ const allProjects = await getCollection('projects');
               title={project.data.title}
               description={project.data.description}
               tags={project.data.tags}
-              url={`/projects/${project.id}`}
+              url={project.data.github}
               image={project.data.image}
             />
           </div>

@@ -4,6 +4,7 @@ description: "An AI-powered system designed to detect driver fatigue and distrac
 tags: ["Python", "AI", "OpenCV", "SQLite"]
 publishDate: "2026-03-15"
 image: "../../assets/neuroguard_mockup.png"
+github: "https://github.com/savishkanishad/NeuroGuard"
 ---
 
 ### Project Overview

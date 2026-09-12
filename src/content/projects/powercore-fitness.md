@@ -4,6 +4,7 @@ description: "A comprehensive fitness management platform featuring membership t
 tags: ["PHP", "SQL", "HTML5", "CSS3", "JavaScript"]
 publishDate: "2026-03-16"
 image: "../../assets/powercore_fitness_mockup.png"
+github: "https://github.com/savishkanishad/PowerCore-Fitness"
 ---
 
 ### Project Overview

@@ -4,6 +4,7 @@ description: "A sophisticated Python-based AI assistant featuring real-time chat
 tags: ["Python", "AI", "Tkinter", "HuggingFace"]
 publishDate: "2026-03-16"
 image: "../../assets/jarvis_mockup.png"
+github: "https://github.com/savishkanishad/jarvis"
 ---
 
 ### Project Overview
