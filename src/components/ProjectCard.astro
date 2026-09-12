@@ -4,7 +4,7 @@ const { title, description, tags, url, image } = Astro.props;
 ---
 <div class="glass p-8 rounded-[2rem] group hover:border-blue-500/40 transition-all duration-500 transform hover:-translate-y-3 relative overflow-hidden flex flex-col h-full">
   <!-- 3D Glow Effect -->
-  <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-[2.1rem] blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
+  <div class="absolute -inset-1 pointer-events-none bg-gradient-to-r from-blue-600 to-purple-600 rounded-[2.1rem] blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
   
   <div class="relative bg-black/40 rounded-2xl p-1 mb-8 overflow-hidden aspect-video border border-white/5 group-hover:border-blue-500/20 transition-all">
     {image ? (
